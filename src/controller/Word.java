@@ -2,6 +2,9 @@ package controller;
 
 import java.util.Observable;
 
+import model.TxtHandler;
+import viewer.Viewer;
+
 /*Word object的变量，只要有
  * entry: 当前处理的word的entry 
  * english：word的英文释义
@@ -21,7 +24,10 @@ public class Word extends Observable
 		 this.chinese = chinese;
 		 this.english = english;
 		 this.entry = entry;
-		 this.state = state;    
+		 this.state = state;  
+		 
+		 this.addObserver(new TxtHandler());
+		 this.addObserver(new Viewer());
 	 }    
 	 
 	 public Integer getEntry() 

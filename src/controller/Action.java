@@ -1,7 +1,5 @@
 package controller;
 
-import viewer.Viewer;
-import model.TxtHandler;
 
 /*
  * 主要是一些前台和后台调用的函数
@@ -10,17 +8,11 @@ import model.TxtHandler;
  * */
 public class Action 
 {
-	Lexicon lexicon;
+	static Word word = new Word(0, "", "", 0);
+	Lexicon lexicon = new Lexicon(0, 0, 0, 0, 0, word);
 	
-	/*初始化Action,type 为词库类别，如a*/
-	public Action(String type)
+	public static void setChinese(String chinese)
 	{
-		Word word = new Word(0, "", "", 0);
-		lexicon = new Lexicon(0, 0, 0, 0, 0, word);
-		
-		word.addObserver(new TxtHandler());
-		word.addObserver(new Viewer());
+		word.setChinese(chinese);
 	}
-	
-	/*其他的action*/
 }
