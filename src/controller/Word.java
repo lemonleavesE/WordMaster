@@ -26,25 +26,25 @@ public class Word extends Observable
 	 
 	 public Integer getEntry() 
 	 {    
-		 this.notifyObservers(this.entry);
+		 this.notifyObservers("entry");
 	     return this.entry;    
 	 }
 	 
 	 public String getEnglish() 
 	 {    
-		 this.notifyObservers(this.english);
+		 this.notifyObservers("english");
 	     return this.english;    
 	 }
 	 
 	 public String getChinese()
 	 {
-		 this.notifyObservers(this.chinese);
+		 this.notifyObservers("chinese");
 		 return this.chinese;
 	 }
 	 
 	 public Integer getState()
 	 {
-		 this.notifyObservers(this.state);
+		 this.notifyObservers("state");
 		 return this.state;
 	 }
 	 
@@ -54,7 +54,7 @@ public class Word extends Observable
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(entry);
+		 this.notifyObservers("entry");
 	 }
 	 
 	 public void setEnglish(String english)
@@ -63,7 +63,7 @@ public class Word extends Observable
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(english);
+		 this.notifyObservers("english");
 	 }
 	 
 	 public void setChinese(String chinese)
@@ -72,7 +72,7 @@ public class Word extends Observable
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(chinese);
+		 this.notifyObservers("chinese");
 	 }
 	 
 	 public void setState(Integer state)
@@ -82,6 +82,6 @@ public class Word extends Observable
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(state);
+		 this.notifyObservers("state");
 	 }
 }

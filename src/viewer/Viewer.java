@@ -1,9 +1,10 @@
-package application;
+package viewer;
 	
 import java.util.Observable;
 import java.util.Observer;
 
 import model.TxtHandler;
+import controller.Action;
 import controller.Word;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -23,9 +24,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 
-public class Main extends Application implements Observer{
-	
-	static Word word = new Word(1, "1","1", 0);
+public class Viewer extends Application implements Observer
+{
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -53,7 +53,7 @@ public class Main extends Application implements Observer{
 
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				word.setUser(userTextField.getText());
+				
 			}});
 			
 			
@@ -79,17 +79,6 @@ public class Main extends Application implements Observer{
 		}
 	}
 	
-	/*controller，主要是界面的linstener，然后调用observer和observation*/
-	public static void main(String[] args) 
-	{
-		word.addObserver(new TxtHandler());
-		word.addObserver(new Main());
-		//word.setState(2);
-		//word.setWord(3);
-		
-		launch(args);
-	}
-
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		/*

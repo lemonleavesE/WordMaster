@@ -19,7 +19,7 @@ public class TxtHandler implements Observer
 		if(word instanceof Word)
 		{    
 			
-             System.out.println("SomeThing changed:"+arg1.toString());
+             System.out.println("SomeThing changed:"+":"+arg1.toString());
         } 
 	} 
 
