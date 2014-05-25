@@ -1,7 +1,10 @@
 package application;
 	
-import txt.TxtHandler;
-import bean.Word;
+import java.util.Observable;
+import java.util.Observer;
+
+import model.TxtHandler;
+import controller.Word;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,7 +23,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 
-public class Main extends Application {
+public class Main extends Application implements Observer{
 	
 	static Word word = new Word("1", 0, 0, 0);
 	
@@ -80,9 +83,23 @@ public class Main extends Application {
 	public static void main(String[] args) 
 	{
 		word.addObserver(new TxtHandler());
+		word.addObserver(new Main());
 		//word.setState(2);
 		//word.setWord(3);
 		
 		launch(args);
+	}
+
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		/*
+		 * if(msg=="词数不足")
+		 * {
+		 * 		前台显示：词数不足
+		 * }
+		 * 
+		 * */
+		System.out.println("hewe");
+		
 	}
 }

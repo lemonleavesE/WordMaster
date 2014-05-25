@@ -1,9 +1,9 @@
-package txt;
+package model;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import bean.Word;
+import controller.Word;
 
 /*每当被监听的Word发生改变时调用，主要用来修改用户的user.conf文件*/
 
@@ -18,6 +18,7 @@ public class TxtHandler implements Observer
 		 * */
 		if(word instanceof Word)
 		{    
+			
              System.out.println("SomeThing changed:"+arg1.toString());
         } 
 	} 

@@ -1,4 +1,4 @@
-package bean;
+package controller;
 
 import java.util.Observable;
 
@@ -15,7 +15,8 @@ public class Word extends Observable
 	private Integer word;
 	private Integer property;
 	private Integer state;
-	 
+	private String msg;
+	
 	 public Word(String user, int word, int property, int state) 
 	 {
 		 this.user = user;
@@ -77,6 +78,7 @@ public class Word extends Observable
 	 
 	 public void setState(Integer state)
 	 {
+		 
 		 this.state = state;
 		 
 		 /*设置observable的状态为已经改变*/
