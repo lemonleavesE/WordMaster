@@ -2,45 +2,44 @@ package controller;
 
 import java.util.Observable;
 
-/*Word bean的变量，只要有
- * user: 当前登录的user 
- * word：当前处理的word (对应dictionary中的入口，也就是byte数目)
- * property：当前处理的word对应到配置文件(对应user.conf中的入口，也就是byte数目)
+/*Word object的变量，只要有
+ * entry: 当前处理的word的entry 
+ * english：word的英文释义
+ * chinese：word的中文释义
  * state: 当前处理的word的状态（16进制）
  * */
 
 public class Word extends Observable
 {
-	private String user;    
-	private Integer word;
-	private Integer property;
+	private Integer entry;
+	private String english;    
+	private String chinese;
 	private Integer state;
-	private String msg;
 	
-	 public Word(String user, int word, int property, int state) 
+	 public Word(int entry, String english, String chinese, int state) 
 	 {
-		 this.user = user;
-		 this.word = word;
-		 this.property = property;
+		 this.chinese = chinese;
+		 this.english = english;
+		 this.entry = entry;
 		 this.state = state;    
 	 }    
 	 
-	 public String getUser() 
+	 public Integer getEntry() 
 	 {    
-		 this.notifyObservers(this.user);
-	     return user;    
+		 this.notifyObservers(this.entry);
+	     return this.entry;    
 	 }
 	 
-	 public Integer getWord() 
+	 public String getEnglish() 
 	 {    
-		 this.notifyObservers(this.word);
-	     return this.word;    
+		 this.notifyObservers(this.english);
+	     return this.english;    
 	 }
 	 
-	 public Integer getProperty()
+	 public String getChinese()
 	 {
-		 this.notifyObservers(this.property);
-		 return this.property;
+		 this.notifyObservers(this.chinese);
+		 return this.chinese;
 	 }
 	 
 	 public Integer getState()
@@ -49,31 +48,31 @@ public class Word extends Observable
 		 return this.state;
 	 }
 	 
-	 public void setUser(String user)
+	 public void setEntry(int entry)
 	 {
-		 this.user = user;
+		 this.entry = entry;
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(user);
+		 this.notifyObservers(entry);
 	 }
 	 
-	 public void setWord(Integer word)
+	 public void setEnglish(String english)
 	 {
-		 this.word = word;
+		 this.english = english;
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(word);
+		 this.notifyObservers(english);
 	 }
 	 
-	 public void setProperty(Integer property)
+	 public void setChinese(String chinese)
 	 {
-		 this.property = property;
+		 this.chinese = chinese;
 		 
 		 /*设置observable的状态为已经改变*/
 		 this.setChanged();
-		 this.notifyObservers(property);
+		 this.notifyObservers(chinese);
 	 }
 	 
 	 public void setState(Integer state)

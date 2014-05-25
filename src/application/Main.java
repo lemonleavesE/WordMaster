@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 
 public class Main extends Application implements Observer{
 	
-	static Word word = new Word("1", 0, 0, 0);
+	static Word word = new Word(1, "1","1", 0);
 	
 	@Override
 	public void start(Stage primaryStage) {
