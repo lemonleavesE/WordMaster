@@ -17,15 +17,27 @@ public class Lexicon
 	private Integer countExcept;
 	private Integer countLeft;
 	private Integer countRight;
-	private Word word;
 	
-	public Lexicon(int entry, int countTotal, int countExcept, int countLeft, int countRight ,Word word)
+	/*java的单例模式，确保整个应用程序中只有一个lexicon实例*/
+	private volatile static Lexicon instance = null; 
+
+	  public static Lexicon getInstance() { 
+	    if (instance == null) { 
+	      synchronized (Lexicon.class) { 
+	        if(instance == null) { 
+	          instance = new Lexicon(-1,-1,-1,-1,-1); 
+	        } 
+	      } 
+	    } 
+	    return instance; 
+	} 
+	  
+	public Lexicon(int entry, int countTotal, int countExcept, int countLeft, int countRight)
 	{
 		this.entry = entry;
 		this.countExcept =  countExcept;
 		this.countLeft = countLeft;
 		this.countTotal =  countTotal;
-		this.word =  word;
 	}
 	
 	public void setEntry(int entry)
@@ -53,11 +65,6 @@ public class Lexicon
 		this.countRight = countRight;
 	}
 	
-	public void setWord (Word word)
-	{
-		this.word = word;
-	}
-	
 	public Integer getEntry()
 	{
 		return this.entry;
@@ -81,10 +88,5 @@ public class Lexicon
 	public Integer getCountRight()
 	{
 		return this.countRight;
-	}
-	
-	public Word getWord()
-	{
-		return this.word;
 	}
 }

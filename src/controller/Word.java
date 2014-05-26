@@ -19,15 +19,30 @@ public class Word extends Observable
 	private String chinese;
 	private Integer state;
 	
-	 public Word(int entry, String english, String chinese, int state) 
-	 {
-		 this.chinese = chinese;
-		 this.english = english;
-		 this.entry = entry;
-		 this.state = state;  
+	/*java的单例模式，确保整个应用中只有一个实例*/
+	private volatile static Word instance = null; 
+
+	public static Word getInstance() { 
+	   if (instance == null) { 
+	     synchronized (Word.class) { 
+	        if(instance == null) { 
+	          instance = new Word(-1,"","",-1); 
+	        } 
+	      } 
+	    } 
+	    return instance; 
+	 } 
+	 
+	
+	public Word(int entry, String english, String chinese, int state) 
+	{
+		this.chinese = chinese;
+		this.english = english;
+		this.entry = entry;
+		this.state = state;  
 		 
-		 this.addObserver(new TxtHandler());
-		 this.addObserver(new Viewer());
+		this.addObserver(new TxtHandler());
+		this.addObserver(new Viewer());
 	 }    
 	 
 	 public Integer getEntry() 

@@ -35,6 +35,7 @@ public class Viewer extends Application implements Observer
 	private PasswordField pwBox;
 	private Scene scene;
 	
+	/*Îö¹¹º¯Êý*/
 	public Viewer()
 	{
 		grid = new GridPane();

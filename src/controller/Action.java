@@ -8,9 +8,16 @@ package controller;
  * */
 public class Action 
 {
-	static Word word = new Word(0, "", "", 0);
-	Lexicon lexicon = new Lexicon(0, 0, 0, 0, 0, word);
+	/*word和lexicon对象*/
+	private static Word word = Word.getInstance();
+	private static Lexicon lexicon = Lexicon.getInstance();
 	
+	/*析构函数，用于初始化word和lexicon*/
+	private Action()
+	{
+	}
+	
+	/*供使用的方法*/
 	public static void setChinese(String chinese)
 	{
 		word.setChinese(chinese);
