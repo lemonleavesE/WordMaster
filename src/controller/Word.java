@@ -41,8 +41,8 @@ public class Word extends Observable
 		this.entry = entry;
 		this.state = state;  
 		 
-		this.addObserver(new TxtHandler());
-		this.addObserver(new Viewer());
+		this.addObserver(TxtHandler.getInstance());
+		this.addObserver(Viewer.getInstance());
 	 }    
 	 
 	 public Integer getEntry() 

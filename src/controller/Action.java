@@ -12,11 +12,6 @@ public class Action
 	private static Word word = Word.getInstance();
 	private static Lexicon lexicon = Lexicon.getInstance();
 	
-	/*析构函数，用于初始化word和lexicon*/
-	private Action()
-	{
-	}
-	
 	/*供使用的方法*/
 	public static void setChinese(String chinese)
 	{
