@@ -3,7 +3,7 @@ package viewer;
 import java.util.Observable;
 import java.util.Observer;
 
-import model.TxtHandler;
+import model.WordHandler;
 import controller.Action;
 import controller.Lexicon;
 import controller.Word;
@@ -74,7 +74,7 @@ public class Viewer extends Application implements Observer
 
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				Action.setChinese("dsdsd");
+				Action.getInstance().chooseLexicon("dsdsd");
 				
 			}});
 			

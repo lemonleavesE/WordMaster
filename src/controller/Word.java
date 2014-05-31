@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Observable;
 
-import model.TxtHandler;
+import model.WordHandler;
 import viewer.Viewer;
 
 /*Word object的变量，只要有
@@ -14,7 +14,7 @@ import viewer.Viewer;
 
 public class Word extends Observable
 {
-	private Integer entry;
+	private long entry;
 	private String english;    
 	private String chinese;
 	private Integer state;
@@ -41,11 +41,11 @@ public class Word extends Observable
 		this.entry = entry;
 		this.state = state;  
 		 
-		this.addObserver(TxtHandler.getInstance());
+		this.addObserver(WordHandler.getInstance());
 		this.addObserver(Viewer.getInstance());
 	 }    
 	 
-	 public Integer getEntry() 
+	 public long getEntry() 
 	 {    
 		 this.notifyObservers("entry");
 	     return this.entry;    
@@ -69,7 +69,7 @@ public class Word extends Observable
 		 return this.state;
 	 }
 	 
-	 public void setEntry(int entry)
+	 public void setEntry(long entry)
 	 {
 		 this.entry = entry;
 		 

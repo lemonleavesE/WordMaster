@@ -1,21 +1,24 @@
 package controller;
 
 /*Lexicon object的变量，只要有
- * entry：在数据库中的入口
+ * entryLexicon：词库入口
+ * type:词库类别
  * countTotal:词库的单词个数
- * countExcept:当前用户选择的个数
- * countLeft:剩余背诵的个数
- * countRight:正确背诵的个数
- * Word:当前背诵的单词对象
+ * entryWord:词库中第一个单词入口
+ * entryLastWord:上一次背到的单词的入口（默认为第一个单词）
+ * countRecited:已经背过的单词的个数
+ * countRight：已经背对的单词的个数
  * 
  * */
 
 public class Lexicon 
 {
-	private Integer entry;
+	private long entryLexicon;
+	private String type;
 	private Integer countTotal;
-	private Integer countExcept;
-	private Integer countLeft;
+	private long entryWord;
+	private long entryLastWord;
+	private Integer countRecited;
 	private Integer countRight;
 	
 	/*java的单例模式，确保整个应用程序中只有一个lexicon实例*/
@@ -25,68 +28,91 @@ public class Lexicon
 	    if (instance == null) { 
 	      synchronized (Lexicon.class) { 
 	        if(instance == null) { 
-	          instance = new Lexicon(-1,-1,-1,-1,-1); 
+	          instance = new Lexicon(-1,"", -1,-1,-1,-1, -1); 
 	        } 
 	      } 
 	    } 
 	    return instance; 
 	} 
 	  
-	public Lexicon(int entry, int countTotal, int countExcept, int countLeft, int countRight)
+	public Lexicon(long entryLexicon, String type, int countTotal,long entryWord, long entryLastWord, int countRecited, int countRight)
 	{
-		this.entry = entry;
-		this.countExcept =  countExcept;
-		this.countLeft = countLeft;
-		this.countTotal =  countTotal;
-	}
-	
-	public void setEntry(int entry)
-	{
-		this.entry = entry;
-	}
-	
-	public void setCountTotal(int countTotal)
-	{
+		this.countRecited = countRecited;
+		this.countRight =  countRight;
 		this.countTotal = countTotal;
+		this.entryLastWord = entryLastWord;
+		this.entryLexicon = entryLexicon;
+		this.entryWord = entryWord;
+		this.type = type;
 	}
 	
-	public void setCountExcept(int countExcept)
+	public void setCountRecited(int count)
 	{
-		this.countExcept = countExcept;
+		this.countRecited = count;
 	}
 	
-	public void setCountLeft(int countLeft)
+	public void setCountRight(int count)
 	{
-		this.countLeft = countLeft;
+		this.countRight = count;
 	}
 	
-	public void setCountRight(int countRight)
+	public void setCountTotal(int count)
 	{
-		this.countRight = countRight;
+		this.countTotal = count;
 	}
 	
-	public Integer getEntry()
+	public void setEntryLastWord(long entry)
 	{
-		return this.entry;
+		this.entryLastWord = entry;
 	}
 	
-	public Integer getCountTotal()
+	public void setEntryLexicon(long entry)
 	{
-		return this.countTotal;
+		this.entryLexicon = entry;
 	}
 	
-	public Integer getCountExcept()
+	public void setEntryWord(long entry)
 	{
-		return this.countExcept;
+		this.entryWord = entry;
 	}
 	
-	public Integer getCountLeft()
+	public void setType(String type)
 	{
-		return this.countLeft;
+		this.type = type;
 	}
 	
-	public Integer getCountRight()
+	public int getCountTotal()
 	{
-		return this.countRight;
+		return this.countTotal;	
+	}
+	
+	public int getCountRecited()
+	{
+		return this.countRecited;	
+	}
+	
+	public int getCountRight()
+	{
+		return this.countRight;	
+	}
+	
+	public long getEntryLexicon()
+	{
+		return this.entryLexicon;
+	}
+	
+	public long getEntryLastWord()
+	{
+		return this.entryLastWord;
+	}
+	
+	public long getEntryWord()
+	{
+		return this.entryWord;
+	}
+	
+	public String getType()
+	{
+		return this.type;
 	}
 }

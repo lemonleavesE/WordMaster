@@ -8,16 +8,16 @@ import controller.Word;
 
 /*每当被监听的Word发生改变时调用，主要用来修改用户的user.conf文件*/
 
-public class TxtHandler implements Observer
+public class WordHandler implements Observer
 {
 	/*java的单例模式，确保整个应用程序中只有一个lexicon实例*/
-	private volatile static TxtHandler instance = null; 
+	private volatile static WordHandler instance = null; 
 
-	  public static TxtHandler getInstance() { 
+	  public static WordHandler getInstance() { 
 	    if (instance == null) { 
-	      synchronized (TxtHandler.class) { 
+	      synchronized (WordHandler.class) { 
 	        if(instance == null) { 
-	          instance = new TxtHandler(); 
+	          instance = new WordHandler(); 
 	        } 
 	      } 
 	    } 
