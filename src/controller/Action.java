@@ -1,7 +1,5 @@
 package controller;
 
-import viewer.Viewer;
-
 
 /*
  * 主要是一些前台和后台调用的函数

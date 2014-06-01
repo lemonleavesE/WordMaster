@@ -26,7 +26,7 @@ public class Word extends Observable
 	   if (instance == null) { 
 	     synchronized (Word.class) { 
 	        if(instance == null) { 
-	          instance = new Word(-1,"","",-1); 
+	          instance = new Word(-1,-1,"",""); 
 	        } 
 	      } 
 	    } 
@@ -34,7 +34,7 @@ public class Word extends Observable
 	 } 
 	 
 	
-	public Word(int entry, String english, String chinese, int state) 
+	public Word(long entry, int state, String english, String chinese) 
 	{
 		this.chinese = chinese;
 		this.english = english;
@@ -44,6 +44,13 @@ public class Word extends Observable
 		this.addObserver(WordHandler.getInstance());
 		this.addObserver(Viewer.getInstance());
 	 }    
+	 public void setWord(long entry, int state, String english, String chinese) 
+	{
+		this.chinese = chinese;
+		this.english = english;
+		this.entry = entry;
+		this.state = state;  
+	}
 	 
 	 public long getEntry() 
 	 {    

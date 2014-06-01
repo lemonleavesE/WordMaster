@@ -105,12 +105,12 @@ public class ConfGenerator
 			
 			//写入entry
 			readerConf.writeLong(readerConf.getFilePointer());
+			//写入状态
+			readerConf.writeInt(0);
 			//写入中文释义
 			readerConf.writeUTF(info[0]);
 			//写入英文释义
 			readerConf.writeUTF(info[1]);
-			//写入状态
-			readerConf.writeInt(0);
 		} 
 		
 		/*test

@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
 
 public class Viewer extends Application implements Observer
 {
-	/*java的单例模式，确保整个应用程序中只有一个lexicon实例*/
+	/*java的单例模式，确保整个应用程序中只有一个Viewer实例*/
 	private volatile static Viewer instance = null; 
 
 	  public static Viewer getInstance() { 
