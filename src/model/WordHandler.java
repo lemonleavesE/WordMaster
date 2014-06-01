@@ -69,6 +69,55 @@ public class WordHandler implements Observer
 			
 			return true;
 		}
+		
+		else if(type.equals("3"))
+		{
+			readerConf.seek(Word.getInstance().getEntry());
+			readerConf.skipBytes(12);
+			readerConf.readUTF();
+			readerConf.readUTF();
+			
+			long tempEntry = readerConf.readLong();
+			int tempState = readerConf.readInt();
+			String tempEnglish = readerConf.readUTF();
+			String tempChinese = readerConf.readUTF();
+			
+			if(tempEnglish.startsWith(Lexicon.getInstance().getType()))
+			{
+				Word.getInstance().setWord(tempEntry, tempState, tempEnglish, tempChinese);
+				Word.getInstance().setChinese(tempChinese);
+			}
+			else
+			{
+				readerConf.seek(Lexicon.getInstance().getEntryLastWord());
+				Word.getInstance().setWord(readerConf.readLong(), readerConf.readInt(), readerConf.readUTF(), readerConf.readUTF());
+				Word.getInstance().setChinese(Word.getInstance().getChinese());
+			}
+			
+			return true;
+		}
+		
+		else
+		{
+			readerConf.seek(Lexicon.getInstance().getEntryWord());
+			int count = Lexicon.getInstance().getCountTotal();
+			while(count>0)
+			{
+				long tempEntry = readerConf.readLong();
+				int tempState = readerConf.readInt();
+				String tempEnglish = readerConf.readUTF();
+				String tempChinses  = readerConf.readUTF();
+				
+				if(tempEnglish.startsWith(type))
+				{
+					Word.getInstance().setWord(tempEntry, tempState, tempEnglish, tempChinses);
+					Word.getInstance().setChinese(tempChinses);
+					return true;
+				}
+				
+				count--;
+			}
+		}
 		return false;
 	}
 }

@@ -1,5 +1,6 @@
 package viewer;
 	
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -74,7 +75,12 @@ public class Viewer extends Application implements Observer
 
 			public void handle(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				Action.getInstance().chooseLexicon("dsdsd");
+				try {
+					Action.getInstance().chooseLexicon("dsdsd");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}});
 			
