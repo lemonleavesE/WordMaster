@@ -2,6 +2,8 @@ package viewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import controller.*;
@@ -12,7 +14,8 @@ import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class EventHandler implements Initializable {
+public class EventHandler implements Initializable,Observer
+{
 	@FXML
 	private AnchorPane main_page;
 	@FXML
@@ -89,7 +92,7 @@ public class EventHandler implements Initializable {
 	@FXML
 	private void EnterResiteSettingMode(ActionEvent event) throws IOException{
 		if(Action.getInstance().chooseLexicon(this.LexiconSelection.getValue().substring(0, 1))){
-			this.MemoryWord.setText(Lexicon.getInstance().getEntryLexicon()+"");
+			this.MemoryWord.setText(Action.getInstance().getLastWord());
 			this.main_page.setVisible(false);
 			this.ReciteSetting.setVisible(true);
 		}		
@@ -154,6 +157,11 @@ public class EventHandler implements Initializable {
 		this.ReciteSetting.setVisible(false);
 		this.Reciting.setVisible(false);
 		
+		
+	}
+
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
 		
 	}	 
 }

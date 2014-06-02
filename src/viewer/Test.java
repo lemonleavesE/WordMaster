@@ -1,33 +1,15 @@
 package viewer;
 	
-import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
-import model.WordHandler;
-import controller.Action;
-import controller.Lexicon;
-import controller.Word;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+import controller.Word;
 
 
 public class Test extends Application implements Observer
@@ -77,9 +59,10 @@ public class Test extends Application implements Observer
 		 */
 		if(arg0 instanceof Word)
 		{    
-             System.out.println("Viewer SomeThing changed:"+":"+arg1.toString());
-             
-             //scenetitle.setText("ds");
+            if(arg1.equals("chinese"))
+            {
+            	
+            }
             
 		} 
 		

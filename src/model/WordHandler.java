@@ -58,6 +58,7 @@ public class WordHandler implements Observer
 			readerConf.seek(Lexicon.getInstance().getEntryWord());
 			Word.getInstance().setWord(readerConf.readLong(), readerConf.readInt(), readerConf.readUTF(), readerConf.readUTF());
 			Word.getInstance().setChinese(Word.getInstance().getChinese());
+			Word.getInstance().setEnglish(Word.getInstance().getEnglish());
 			
 			return true;
 		}
@@ -66,6 +67,7 @@ public class WordHandler implements Observer
 			readerConf.seek(Lexicon.getInstance().getEntryLastWord());
 			Word.getInstance().setWord(readerConf.readLong(), readerConf.readInt(), readerConf.readUTF(), readerConf.readUTF());
 			Word.getInstance().setChinese(Word.getInstance().getChinese());
+			Word.getInstance().setEnglish(Word.getInstance().getEnglish());
 			
 			return true;
 		}
@@ -86,12 +88,14 @@ public class WordHandler implements Observer
 			{
 				Word.getInstance().setWord(tempEntry, tempState, tempEnglish, tempChinese);
 				Word.getInstance().setChinese(tempChinese);
+				Word.getInstance().setEnglish(tempEnglish);
 			}
 			else
 			{
 				readerConf.seek(Lexicon.getInstance().getEntryLastWord());
 				Word.getInstance().setWord(readerConf.readLong(), readerConf.readInt(), readerConf.readUTF(), readerConf.readUTF());
-				Word.getInstance().setChinese(Word.getInstance().getChinese());
+				Word.getInstance().setChinese(tempChinese);
+				Word.getInstance().setEnglish(tempEnglish);
 			}
 			
 			return true;
@@ -119,5 +123,13 @@ public class WordHandler implements Observer
 			}
 		}
 		return false;
+	}
+
+	public String getLastWord() throws IOException 
+	{
+		// TODO Auto-generated method stub
+		RandomAccessFile readerConf = ConfRW.getInstance().getConf();
+		readerConf.seek(Lexicon.getInstance().getEntryLastWord()+12);
+		return readerConf.readUTF();
 	}
 }

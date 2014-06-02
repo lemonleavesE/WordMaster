@@ -136,4 +136,11 @@ public class Action
 	{
 		return null;
 	}
+	
+	//获取上次背诵的单词的信息
+	public String getLastWord() throws IOException
+	{
+		return WordHandler.getInstance().getLastWord();
+		
+	}
 }
