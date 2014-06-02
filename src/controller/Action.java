@@ -13,10 +13,14 @@ import model.WordHandler;
  *-选择此词库，type为输入的词库的类别（名称）
  *-返回是否选择成功。
  *
- *public boolean setNum(int num)
+ 
+ <--有修改-->
+ *public int setNum(int num)
  *-选择背诵的单词个数,num 为输入的数目
- *-返回是否成功。
- *
+ *-ret: 输入数目不超过词库剩余单词 return 0,
+ *		else return 词库剩余单词数
+  <--有修改-->
+
  *public boolean chooseWord(String type)
  *-选择起始背诵的单词，type为类别：0为默认第一个，1为上次背诵的，type也可以是单词的英文
  *	0	-默认起始单词
@@ -32,6 +36,8 @@ import model.WordHandler;
  *			-1 	-背错了，且选好另一个单词
  *			-2	-背错了，上限满了
  *			-3	-背错了，而且没有选好下一个单词
+ * 
+ * 
  * */
 public class Action 
 {

@@ -8,6 +8,8 @@ package controller;
  * entryLastWord:上一次背到的单词的入口（默认为第一个单词）
  * countRecited:已经背过的单词的个数
  * countRight：已经背对的单词的个数
+ * countWrong：被错的单词个数
+ * accuracy：正确率
  * 
  * */
 

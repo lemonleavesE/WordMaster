@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -15,11 +16,11 @@
          <children>
             <ChoiceBox id="LexiconSelection" fx:id="LexiconSelection" layoutX="251.0" layoutY="36.0" prefHeight="34.0" prefWidth="150.0" />
             <Label layoutX="146.0" layoutY="36.0" prefHeight="34.0" prefWidth="92.0" text="词库选择：" />
-            <Button layoutX="101.0" layoutY="171.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="150.0" text="开始单词背诵" />
+            <Button layoutX="101.0" layoutY="171.0" mnemonicParsing="false" onAction="#EnterResiteSettingMode" onMouseClicked="#EnterResiteSettingMode" prefHeight="54.0" prefWidth="150.0" text="开始单词背诵" />
             <Button layoutX="308.0" layoutY="171.0" mnemonicParsing="false" onAction="#ReadLexiconInfo" onMouseClicked="#ReadLexiconInfo" prefHeight="54.0" prefWidth="150.0" text="查看统计信息" />
          </children>
       </AnchorPane>
-      <AnchorPane id="LexiconInfo" fx:id="LexiconInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #AFEEEE;">
+      <AnchorPane id="LexiconInfo" fx:id="LexiconInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #AFEEEE;" visible="false">
 		   <children>
 			  <Label layoutX="61.0" layoutY="15.0" prefHeight="25.0" prefWidth="89.0" text="词库信息" textFill="#fb7e7e">
 				 <font>
@@ -109,10 +110,10 @@
 				  <NumberAxis side="LEFT" />
 				</yAxis>
 			  </BarChart>
-			  <Button fx:id="Back_btn" layoutX="513.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
+			  <Button fx:id="Back_btn" layoutX="513.0" layoutY="359.0" mnemonicParsing="false" onAction="#ReturnMain" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
 		   </children>
 	  </AnchorPane>
-	  <AnchorPane id="ReciteSetting" fx:id="ReciteSetting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FAFAD2;" visible="false">
+	  <AnchorPane id="ReciteSetting" fx:id="ReciteSetting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FAFAD2;">
 		   <children>
 			  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
 				 <image>
@@ -140,8 +141,8 @@
 					</LinearGradient>
 				 </textFill>
 			  </Label>
-			  <TextField layoutX="397.0" layoutY="71.0" prefHeight="25.0" prefWidth="140.0" />
-			  <Button layoutX="239.0" layoutY="271.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" style="-fx-background-color: #E0FFFF; -fx-border-radius: 10px;" text="开始背诵啦" textFill="#c6c622">
+			  <TextField id="StartEntry" fx:id="StartEntry" layoutX="397.0" layoutY="71.0" prefHeight="25.0" prefWidth="140.0" />
+			  <Button layoutX="239.0" layoutY="271.0" mnemonicParsing="false" onAction="#StartReciting" onMouseClicked="#StartReciting" prefHeight="40.0" prefWidth="123.0" style="-fx-background-color: #E0FFFF; -fx-border-radius: 10px;" text="开始背诵啦" textFill="#c6c622">
 				 <effect>
 					<DropShadow color="#72d0e1" />
 				 </effect>
@@ -162,7 +163,7 @@
 					</LinearGradient>
 				 </textFill>
 			  </Label>
-			  <Label layoutX="134.0" layoutY="74.0" prefHeight="18.0" prefWidth="55.0" text="Label" />
+			  <Label id="MemoryWord" fx:id="MemoryWord" layoutX="134.0" layoutY="74.0" prefHeight="18.0" prefWidth="55.0" />
 			  <Label layoutX="189.0" layoutY="71.0" prefHeight="24.0" prefWidth="84.0" text="了哟~">
 				 <font>
 					<Font size="15.0" />
@@ -189,7 +190,7 @@
 					</LinearGradient>
 				 </textFill>
 			  </Label>
-			  <TextField layoutX="254.0" layoutY="169.0" prefHeight="25.0" prefWidth="84.0" />
+			  <TextField id="ReciteNum" fx:id="ReciteNum" layoutX="254.0" layoutY="169.0" prefHeight="25.0" prefWidth="84.0" />
 			  <Label layoutX="344.0" layoutY="168.0" prefHeight="24.0" prefWidth="84.0" text="个单词！">
 				 <font>
 					<Font size="15.0" />
@@ -203,13 +204,20 @@
 					</LinearGradient>
 				 </textFill>
 			  </Label>
-			  <RadioButton layoutX="228.0" layoutY="122.0" mnemonicParsing="false" text="喵，要自己做主" textFill="#f8b4b4" />
-			  <RadioButton layoutX="48.0" layoutY="122.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="156.0" text="喵，从上次的继续好啦~" textFill="#f8b4b4" />
-			  <RadioButton layoutX="386.0" layoutY="122.0" mnemonicParsing="false" text="喵，默认是词库第一个哦~" textFill="#f8b4b4" />
             <Button fx:id="Back_btn1" layoutX="491.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
-		   </children>
+            <Group layoutX="32.0" layoutY="133.0" >
+            <fx:define>	
+            	<ToggleGroup fx:id="myToggleGroup"/>
+            </fx:define>
+               <children>
+      			  <RadioButton fx:id="rb2" mnemonicParsing="false" text="喵，要自己做主" textFill="#f8b4b4" toggleGroup="$myToggleGroup"/>
+      			  <RadioButton fx:id="rb1" layoutX="169.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="156.0" text="喵，从上次的继续好啦~" textFill="#f8b4b4" toggleGroup="$myToggleGroup"/>
+      			  <RadioButton fx:id="rb0" layoutX="383.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="505.0" text="喵，默认是词库第一个哦~" textFill="#f8b4b4" toggleGroup="$myToggleGroup"/>
+               </children>
+            </Group>
+           </children>
 	  </AnchorPane>
-	  <AnchorPane id="Reciting" fx:id="Reciting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b6fbdd;" visible="false">
+	  <AnchorPane id="Reciting" fx:id="Reciting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b6fbdd;">
 		   <children>
 			  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
 				 <image>
@@ -226,32 +234,36 @@
 					<Font size="15.0" />
 				 </font>
 			  </Label>
-			  <Label fx:id="ChMean" layoutX="301.0" layoutY="74.0" prefHeight="30.0" prefWidth="121.0" text="ChineseMeaning" textFill="#d3b7b7" />
+			  <Label id="ChMean" fx:id="ChMean" layoutX="301.0" layoutY="74.0" prefHeight="30.0" prefWidth="121.0" text="ChineseMeaning" textFill="#d3b7b7" />
 			  <Label layoutX="159.0" layoutY="115.0" prefHeight="30.0" prefWidth="112.0" text="猜一猜英文：" textFill="#a89797">
 				 <font>
 					<Font size="15.0" />
 				 </font>
 			  </Label>
-			  <TextField layoutX="281.0" layoutY="118.0" />
-			  <Button layoutX="260.0" layoutY="169.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #FFFACD;" text="下一个" textFill="#fcc578">
+			  <TextField id="EngInput" fx:id="EngInput" layoutX="281.0" layoutY="118.0" />
+			  <Button layoutX="260.0" layoutY="169.0" mnemonicParsing="false" onAction="#NextWord" onMouseClicked="#NextWord" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #FFFACD;" text="下一个" textFill="#fcc578">
 				 <effect>
 					<DropShadow color="#e1df60" />
 				 </effect>
 			  </Button>
-			  <ImageView fx:id="RightIcon" fitHeight="45.0" fitWidth="45.0" layoutX="247.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
-				 <image>
-					<Image url="@../../pic/3.png" />
-				 </image>
-			  </ImageView>
-			  <Label layoutX="195.0" layoutY="266.0" prefHeight="25.0" prefWidth="41.0" text="出错了 " textFill="#ab4c8b" />
-			  <Label layoutX="284.0" layoutY="260.0" prefHeight="37.0" prefWidth="85.0" text="正确的应该是：" textFill="#ab4c8b" />
-			  <Button layoutX="230.0" layoutY="297.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #FFFACD;" text="我知道了:) 继续吧。" textFill="#fcc578">
-				 <effect>
-					<DropShadow color="#e1df60" />
-				 </effect>
-			  </Button>
-			  <Label fx:id="EngWord" layoutX="376.0" layoutY="270.0" text="Label" />
             <Button fx:id="Back_btn2" layoutX="497.0" layoutY="350.0" mnemonicParsing="false" onAction="#ReturnMain" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
+            <Group id="ErrorHint" fx:id="ErrorHint" layoutX="179.0" layoutY="266.0" visible="false">
+               <children>
+      			  <Label layoutX="11.0" prefHeight="25.0" prefWidth="41.0" text="出错了 " textFill="#ab4c8b" />
+      			  <ImageView fx:id="RightIcon" fitHeight="45.0" fitWidth="45.0" layoutX="58.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+      				 <image>
+      					<Image url="@../../pic/3.png" />
+      				 </image>
+      			  </ImageView>
+      			  <Label layoutX="93.0" layoutY="-5.0" prefHeight="37.0" prefWidth="85.0" text="正确的应该是：" textFill="#ab4c8b" />
+      			  <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #FFFACD;" text="我知道了:) 继续吧。" textFill="#fcc578">
+      				 <effect>
+      					<DropShadow color="#e1df60" />
+      				 </effect>
+      			  </Button>
+      			  <Label id="EngWord" fx:id="EngWord" layoutX="192.0" layoutY="4.0" prefHeight="17.0" prefWidth="62.0" text="Label" />
+               </children>
+            </Group>
 		   </children>
 	  </AnchorPane>
 
