@@ -10,7 +10,8 @@ import java.util.ResourceBundle;
 import config.ConfRW;
 import controller.*;
 import javafx.collections.*;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.Event;
 import javafx.fxml.*;
 import javafx.scene.Group;
 import javafx.scene.control.*;
@@ -68,16 +69,17 @@ public class EventHandler implements Initializable,Observer
 	private Group RecitingGroup;
 	@FXML
 	private AnchorPane ShowMessageDialog;
-	
+	@FXML
+	private Label AlertMessage;
 	
 	@FXML  
-	private void ReturnMain(ActionEvent event){
+	private void ReturnMain(Event event){
 		this.ShowMainPage();
 	}
 	
 	/*查看词库信息*/
 	@FXML  
-	private void ReadLexiconInfo(ActionEvent event) throws IOException{
+	private void ReadLexiconInfo(Event event) throws IOException{
 		String type = this.LexiconSelection.getValue().substring(0, 1);
 		if(Action.getInstance().chooseLexicon(type)){
 			Lexicon l = Lexicon.getInstance();
@@ -98,7 +100,7 @@ public class EventHandler implements Initializable,Observer
 	
 	/*选择词库后进入背诵设置页面*/
 	@FXML
-	private void EnterResiteSettingMode(ActionEvent event) throws IOException{
+	private void EnterResiteSettingMode(Event event) throws IOException{
 		if(Action.getInstance().chooseLexicon(this.LexiconSelection.getValue().substring(0, 1))){
 			this.MemoryWord.setText(Action.getInstance().getLastWord());
 			this.main_page.setVisible(false);
@@ -108,9 +110,9 @@ public class EventHandler implements Initializable,Observer
 	
 	/*开始背诵*/
 	@FXML
-	private void StartReciting(ActionEvent event) throws IOException{
+	private void StartReciting(Event event) throws IOException{
 		if(this.myToggleGroup.getSelectedToggle() == null){
-			this.ShowAlertDialog();
+			this.ShowAlertDialog("");
 		}else{
 			Action.getInstance().setNum(Integer.parseInt(this.ReciteNum.getText()));
 			Toggle t = this.myToggleGroup.getSelectedToggle();
@@ -119,6 +121,8 @@ public class EventHandler implements Initializable,Observer
 			if(o.toString().equals("2")){//自定义起始单词
 				if(Action.getInstance().chooseWord(this.StartEntry.getText())){
 					
+				}else{
+					this.ShowAlertDialog("自定义起始单词失败了:(");
 				}
 			}else{
 				if(Action.getInstance().chooseWord(o.toString())){
@@ -136,16 +140,24 @@ public class EventHandler implements Initializable,Observer
 	
 	/*下一个单词背诵*/
 	@FXML
-	private void NextWord(ActionEvent event) throws IOException{
+	private void NextWord(Event event) throws IOException{
 		int flag = Action.getInstance().nextWord(this.EngInput.getText());
 		
 		
 		if(flag < 0){//出错，显示提示信息
-			this.RecitingGroup.setDisable(true);
-			this.ErrorHint.setVisible(true);
+		
+					this.RecitingGroup.setDisable(true);
+					this.ErrorHint.setVisible(true);
 			
 		}else{
-		//	this.ChMean.setText(Word.getInstance().getChinese());
+			switch(flag){
+				case 1:
+
+				case 2: 
+				
+				case 3:
+			}
+			this.ChMean.setText(Word.getInstance().getChinese());
 			this.EngWord.setText(Word.getInstance().getEnglish());
 			this.EngInput.setText("");
 			//this.ReciteSetting.setVisible(false);
@@ -157,7 +169,7 @@ public class EventHandler implements Initializable,Observer
 	
 	/*提示错误后继续背诵*/
 	@FXML
-	public void ContinueReciting(ActionEvent event){
+	public void ContinueReciting(Event event){
 		this.ErrorHint.setVisible(false);
 		this.ChMean.setText(Word.getInstance().getChinese());
 		this.EngWord.setText(Word.getInstance().getEnglish());
@@ -167,12 +179,14 @@ public class EventHandler implements Initializable,Observer
 	
 	
 	 @FXML
-	 private void OnAlertOKClick(ActionEvent event) {
+	 private void OnAlertOKClick(Event event) {
 		 this.HideAlertDialog();
 	 }
 	
-	 public void ShowAlertDialog(){
+	 
+	 public void ShowAlertDialog(String message){
 		 this.ReciteSetting.setDisable(true);
+		 this.AlertMessage.setText(message);
 		 this.ShowMessageDialog.setVisible(true);
 	 }
 	 
@@ -218,17 +232,20 @@ public class EventHandler implements Initializable,Observer
 		this.ShowMainPage();
 	}
 
-	public void update(Observable word, Object arg1) {
+	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		if(word instanceof Word)
-		{    
+		
+		if(arg0 instanceof Word){
 			if(arg1.equals("chinese"))
 			{
 				System.out.println("chinese update");
 				this.ChMean.setText(Word.getInstance().getChinese());
 				
 			}
-        }
+		}/*else if(arg0 instanceof Lexicon){
+			System.out.println("chinese update");
+			this.ChMean.setText(Word.getInstance().getChinese());
+		}*/
 		
 	}	 
 }
