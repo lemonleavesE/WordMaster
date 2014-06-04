@@ -29,7 +29,7 @@ public class Test extends Application implements Observer
 	} 
 
 
-	private Scene scene;
+	public Scene scene;
 	
 	
 	@Override

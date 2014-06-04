@@ -13,9 +13,11 @@ import javafx.fxml.*;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
 
 public class EventHandler implements Initializable,Observer
 {
+	private static Stage  newAlertDialog ;  
 	@FXML
 	private AnchorPane main_page;
 	@FXML
@@ -54,17 +56,21 @@ public class EventHandler implements Initializable,Observer
 	private RadioButton rb2;
 	@FXML
 	private Label ChMean;
+	@FXML
+	private Label EngWord;
 	@FXML 
 	private TextField EngInput;
 	@FXML
 	private Group ErrorHint;
 	@FXML
-	private Label EngWord;
+	private Group RecitingGroup;
+	@FXML
+	private AnchorPane ShowMessageDialog;
+	
 	
 	@FXML  
 	private void ReturnMain(ActionEvent event){
-		this.LexiconInfo.setVisible(false);
-		this.main_page.setVisible(true);
+		this.ShowMainPage();
 	}
 	
 	/*查看词库信息*/
@@ -101,34 +107,78 @@ public class EventHandler implements Initializable,Observer
 	/*开始背诵*/
 	@FXML
 	private void StartReciting(ActionEvent event) throws IOException{
-		Action.getInstance().setNum(Integer.parseInt(this.ReciteNum.getText()));
-		Toggle t = this.myToggleGroup.getSelectedToggle();
-		Object o = t.getUserData();
-		//ObservableMap<Object, Object> om = t.getProperties();
-		
-		System.out.println(o.toString());
-		if(o.toString().equals("2")){//自定义起始单词
-			if(Action.getInstance().chooseWord(this.StartEntry.getText())){
-				
-			}
+		if(this.myToggleGroup.getSelectedToggle() == null){
+			this.ShowAlertDialog();
 		}else{
-			if(Action.getInstance().chooseWord(o.toString())){
-				this.ChMean.setText(Word.getInstance().getChinese());
-				this.ReciteSetting.setVisible(false);
-				this.Reciting.setVisible(true);
-			}			
-		}		
+			Action.getInstance().setNum(Integer.parseInt(this.ReciteNum.getText()));
+			Toggle t = this.myToggleGroup.getSelectedToggle();
+			Object o = t.getUserData();
+			
+			if(o.toString().equals("2")){//自定义起始单词
+				if(Action.getInstance().chooseWord(this.StartEntry.getText())){
+					
+				}
+			}else{
+				if(Action.getInstance().chooseWord(o.toString())){
+					this.ChMean.setText(Word.getInstance().getChinese());
+					this.EngWord.setText(Word.getInstance().getEnglish());
+					this.ReciteSetting.setVisible(false);
+					this.Reciting.setVisible(true);
+				}			
+			}	
+			
+		}
+		
+			
 	}
 	
 	/*下一个单词背诵*/
 	@FXML
 	private void NextWord(ActionEvent event) throws IOException{
 		int flag = Action.getInstance().nextWord(this.EngInput.getText());
+		
+		
 		if(flag < 0){//出错，显示提示信息
-			this.EngWord.setText(Word.getInstance().getEnglish());
+			this.RecitingGroup.setDisable(true);
 			this.ErrorHint.setVisible(true);
+			
+		}else{
+			this.ChMean.setText(Word.getInstance().getChinese());
+			this.EngWord.setText(Word.getInstance().getEnglish());
+			this.EngInput.setText("");
+			//this.ReciteSetting.setVisible(false);
+			
+	
+			
 		}
 	}
+	
+	/*提示错误后继续背诵*/
+	@FXML
+	public void ContinueReciting(ActionEvent event){
+		this.ErrorHint.setVisible(false);
+		this.ChMean.setText(Word.getInstance().getChinese());
+		this.EngWord.setText(Word.getInstance().getEnglish());
+		this.EngInput.setText("");
+		this.RecitingGroup.setDisable(false);
+	}
+	
+	
+	 @FXML
+	 private void OnAlertOKClick(ActionEvent event) {
+		 this.HideAlertDialog();
+	 }
+	
+	 public void ShowAlertDialog(){
+		 this.ReciteSetting.setDisable(true);
+		 this.ShowMessageDialog.setVisible(true);
+	 }
+	 
+	 public void HideAlertDialog(){
+		 this.ShowMessageDialog.setVisible(false);
+		 this.ReciteSetting.setDisable(false);
+	 }
+	
 	
 	/*词库选择数据绑定*/
 	public void LexiconDataBinding(){
@@ -140,24 +190,30 @@ public class EventHandler implements Initializable,Observer
 		this.LexiconSelection.setItems(lexicons);
 	}
 	
+	
 	/*设定RadioButton*/
 	public void RadioButtonSetting(){
 		this.rb0.setUserData("0");
 		this.rb1.setUserData("1");
 		this.rb2.setUserData("2");
 	}
+	
+	public void ShowMainPage(){
+		this.main_page.setVisible(true);
+		this.LexiconInfo.setVisible(false);
+		this.ReciteSetting.setVisible(false);
+		this.Reciting.setVisible(false);
+		this.ShowMessageDialog.setVisible(false);
+	}
+	
+	
 
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		LexiconDataBinding();
 		RadioButtonSetting();
-		this.main_page.setVisible(true);
-		this.LexiconInfo.setVisible(false);
-		this.ReciteSetting.setVisible(false);
-		this.Reciting.setVisible(false);
-		
-		
+		this.ShowMainPage();
 	}
 
 	public void update(Observable arg0, Object arg1) {

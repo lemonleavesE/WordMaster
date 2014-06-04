@@ -215,6 +215,8 @@
       			  <RadioButton fx:id="rb0" layoutX="383.0" layoutY="1.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="505.0" text="喵，默认是词库第一个哦~" textFill="#f8b4b4" toggleGroup="$myToggleGroup"/>
                </children>
             </Group>
+            
+            
            </children>
 	  </AnchorPane>
 	  <AnchorPane id="Reciting" fx:id="Reciting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #b6fbdd;">
@@ -229,23 +231,6 @@
 					<Font size="20.0" />
 				 </font>
 			  </Label>
-			  <Label layoutX="159.0" layoutY="74.0" prefHeight="30.0" prefWidth="101.0" text="中文释义：" textFill="#a89797">
-				 <font>
-					<Font size="15.0" />
-				 </font>
-			  </Label>
-			  <Label id="ChMean" fx:id="ChMean" layoutX="301.0" layoutY="74.0" prefHeight="30.0" prefWidth="121.0" text="ChineseMeaning" textFill="#d3b7b7" />
-			  <Label layoutX="159.0" layoutY="115.0" prefHeight="30.0" prefWidth="112.0" text="猜一猜英文：" textFill="#a89797">
-				 <font>
-					<Font size="15.0" />
-				 </font>
-			  </Label>
-			  <TextField id="EngInput" fx:id="EngInput" layoutX="281.0" layoutY="118.0" />
-			  <Button layoutX="260.0" layoutY="169.0" mnemonicParsing="false" onAction="#NextWord" onMouseClicked="#NextWord" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #FFFACD;" text="下一个" textFill="#fcc578">
-				 <effect>
-					<DropShadow color="#e1df60" />
-				 </effect>
-			  </Button>
             <Button fx:id="Back_btn2" layoutX="497.0" layoutY="350.0" mnemonicParsing="false" onAction="#ReturnMain" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
             <Group id="ErrorHint" fx:id="ErrorHint" layoutX="179.0" layoutY="266.0" visible="false">
                <children>
@@ -256,7 +241,7 @@
       				 </image>
       			  </ImageView>
       			  <Label layoutX="93.0" layoutY="-5.0" prefHeight="37.0" prefWidth="85.0" text="正确的应该是：" textFill="#ab4c8b" />
-      			  <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #FFFACD;" text="我知道了:) 继续吧。" textFill="#fcc578">
+      			  <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#ContinueReciting" onMouseClicked="#ContinueReciting" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #FFFACD;" text="我知道了:) 继续吧。" textFill="#fcc578">
       				 <effect>
       					<DropShadow color="#e1df60" />
       				 </effect>
@@ -264,8 +249,48 @@
       			  <Label id="EngWord" fx:id="EngWord" layoutX="192.0" layoutY="4.0" prefHeight="17.0" prefWidth="62.0" text="Label" />
                </children>
             </Group>
+            <Group id="RecitingGroup" fx:id="RecitingGroup" layoutX="164.0" layoutY="66.0">
+               <children>
+      			  <Label layoutY="47.0" prefHeight="30.0" prefWidth="112.0" text="猜一猜英文：" textFill="#a89797">
+      				 <font>
+      					<Font size="15.0" />
+      				 </font>
+      			  </Label>
+      			  <Label prefHeight="30.0" prefWidth="101.0" text="中文释义：" textFill="#a89797">
+      				 <font>
+      					<Font size="15.0" />
+      				 </font>
+      			  </Label>
+      			  <Label id="ChMean" fx:id="ChMean" layoutX="112.0" prefHeight="30.0" prefWidth="121.0" text="ChineseMeaning" textFill="#d3b7b7" />
+      			  <TextField id="EngInput" fx:id="EngInput" layoutX="112.0" layoutY="51.0" />
+      			  <Button layoutX="101.0" layoutY="100.0" mnemonicParsing="false" onAction="#NextWord" onMouseClicked="#NextWord" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #FFFACD;" text="下一个" textFill="#fcc578">
+      				 <effect>
+      					<DropShadow color="#e1df60" />
+      				 </effect>
+      			  </Button>
+               </children>
+            </Group>
 		   </children>
 	  </AnchorPane>
+      <AnchorPane id="ShowMessageDialog" fx:id="ShowMessageDialog" prefHeight="320.0" prefWidth="429.0">
+         <children>
+            <TitledPane id="AlertTitledPane" fx:id="AlertTitledPane" animated="false" layoutX="163.0" layoutY="112.0" prefHeight="200.0" prefWidth="150.0" text="提示">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="38.0" layoutX="62.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../pic/7.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="AlertMessage" fx:id="AlertMessage" layoutX="97.0" layoutY="59.0" prefHeight="17.0" prefWidth="147.0" text="你怎么不选起始单词:(" />
+                        <Button layoutX="118.0" layoutY="111.0" mnemonicParsing="false" onAction="#OnAlertOKClick" onMouseClicked="#OnAlertOKClick" text="确定" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+         </children>
+      </AnchorPane>
 
 
    </children>

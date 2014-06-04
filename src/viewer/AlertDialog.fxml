@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane id="AlertTitledPane" fx:id="AlertTitledPane" animated="false" layoutY="-3.0" prefHeight="206.0" prefWidth="300.0" text="提示">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="62.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pic/7.png" />
+                     </image>
+                  </ImageView>
+                  <Label id="AlertMessage" fx:id="AlertMessage" layoutX="97.0" layoutY="59.0" prefHeight="17.0" prefWidth="147.0" text="你怎么不选起始单词:(" />
+                  <Button layoutX="118.0" layoutY="111.0" mnemonicParsing="false" text="确定" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
