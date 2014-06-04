@@ -3,6 +3,7 @@ package controller;
 import java.util.Observable;
 
 import model.WordHandler;
+import viewer.Test;
 import viewer.Viewer;
 
 /*Word object的变量，只要有
@@ -42,7 +43,7 @@ public class Word extends Observable
 		this.state = state;  
 		 
 		this.addObserver(WordHandler.getInstance());
-		this.addObserver(Viewer.getInstance());
+		this.addObserver(Test.getInstance());
 	 }    
 	 public void setWord(long entry, int state, String english, String chinese) 
 	{

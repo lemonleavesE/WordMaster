@@ -1,11 +1,13 @@
 package viewer;
 
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import config.ConfRW;
 import controller.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
@@ -79,7 +81,7 @@ public class EventHandler implements Initializable,Observer
 		String type = this.LexiconSelection.getValue().substring(0, 1);
 		if(Action.getInstance().chooseLexicon(type)){
 			Lexicon l = Lexicon.getInstance();
-			int wrong = l.getCountTotal() - l.getCountRight();
+			int wrong = l.getCountRecited() - l.getCountRight();
 			double acc = (double)l.getCountRight()/l.getCountTotal();
 			this.LexiconName.setText(l.getType()+"´Ê¿â");
 			this.TotalCnt.setText(l.getCountTotal()+"");
@@ -143,7 +145,7 @@ public class EventHandler implements Initializable,Observer
 			this.ErrorHint.setVisible(true);
 			
 		}else{
-			this.ChMean.setText(Word.getInstance().getChinese());
+		//	this.ChMean.setText(Word.getInstance().getChinese());
 			this.EngWord.setText(Word.getInstance().getEnglish());
 			this.EngInput.setText("");
 			//this.ReciteSetting.setVisible(false);
@@ -216,8 +218,17 @@ public class EventHandler implements Initializable,Observer
 		this.ShowMainPage();
 	}
 
-	public void update(Observable arg0, Object arg1) {
+	public void update(Observable word, Object arg1) {
 		// TODO Auto-generated method stub
+		if(word instanceof Word)
+		{    
+			if(arg1.equals("chinese"))
+			{
+				System.out.println("chinese update");
+				this.ChMean.setText(Word.getInstance().getChinese());
+				
+			}
+        }
 		
 	}	 
 }
