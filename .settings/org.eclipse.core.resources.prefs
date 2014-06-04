@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/config/ConfGenerator.java=GBK
+encoding//src/config/ConfRW.java=GBK
+encoding//src/controller/Action.java=GBK
+encoding//src/controller/Lexicon.java=GBK
+encoding//src/controller/Word.java=GBK
+encoding//src/model/LexiconHandler.java=GBK
+encoding//src/model/WordHandler.java=GBK
+encoding//src/viewer/EventHandler.java=GBK
+encoding//src/viewer/Test.java=GBK
+encoding//src/viewer/Viewer.java=GBK
+encoding/<project>=GBK
+encoding/user.conf=UTF-8
