@@ -8,7 +8,7 @@ import controller.Lexicon;
 
 public class LexiconHandler 
 {
-	/*java的单例模式，确保整个应用程序中只有一个Viewer实例*/
+	/*java锟侥碉拷锟斤拷模式锟斤拷确锟斤拷锟斤拷锟接︼拷贸锟斤拷锟斤拷锟街伙拷锟揭伙拷锟絍iewer实锟斤拷*/
 	private volatile static LexiconHandler instance = null; 
 
 	  public static LexiconHandler getInstance() { 

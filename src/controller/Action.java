@@ -14,12 +14,12 @@ import model.WordHandler;
  *-返回是否选择成功。
  *
  
- <--有修改-->
  *public int setNum(int num)
  *-选择背诵的单词个数,num 为输入的数目
  *-ret: 输入数目不超过词库剩余单词 return 0,
  *		else return 词库剩余单词数
   <--有修改-->
+  <--已经改好了-->
 
  *public boolean chooseWord(String type)
  *-选择起始背诵的单词，type为类别：0为默认第一个，1为上次背诵的，type也可以是单词的英文
@@ -36,6 +36,10 @@ import model.WordHandler;
  *			-1 	-背错了，且选好另一个单词
  *			-2	-背错了，上限满了
  *			-3	-背错了，而且没有选好下一个单词
+ * 
+ * public String getLastWord()
+ * -获取上次背诵的单词的信息
+ * -ret: 上次的单词的英文
  * 
  * 
  * */
@@ -70,16 +74,17 @@ public class Action
 	}
 	
 	//选择背诵的单词个数,num 为输入的数目
-	public boolean setNum(int num)
+	public int setNum(int num)
 	{
-		if(Lexicon.getInstance().getCountTotal()>=num)
+		int countTemp = Lexicon.getInstance().getCountTotal();
+		if(countTemp>=num)
 		{
 			countTotal = num;
 			count = 0;
 			countCorrect = 0;
-			return true;
+			return 0;
 		}
-		return false;
+		return countTemp;
 	}
 	
 	//选择起始背诵的单词
