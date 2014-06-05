@@ -4,7 +4,6 @@ import java.util.Observable;
 
 import model.WordHandler;
 import viewer.Test;
-import viewer.Viewer;
 
 /*Word object的变量，只要有
  * entry: 当前处理的word的entry 

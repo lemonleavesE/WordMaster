@@ -112,7 +112,7 @@ public class EventHandler implements Initializable,Observer
 	@FXML
 	private void StartReciting(Event event) throws IOException{
 		if(this.myToggleGroup.getSelectedToggle() == null){
-			this.ShowAlertDialog("");
+			this.ShowAlertDialog("你怎么不选起始方式:(");
 		}else{
 			Action.getInstance().setNum(Integer.parseInt(this.ReciteNum.getText()));
 			Toggle t = this.myToggleGroup.getSelectedToggle();
@@ -120,9 +120,12 @@ public class EventHandler implements Initializable,Observer
 			
 			if(o.toString().equals("2")){//自定义起始单词
 				if(Action.getInstance().chooseWord(this.StartEntry.getText())){
-					
+					this.ChMean.setText(Word.getInstance().getChinese());
+					this.EngWord.setText(Word.getInstance().getEnglish());
+					this.ReciteSetting.setVisible(false);
+					this.Reciting.setVisible(true);
 				}else{
-					this.ShowAlertDialog("自定义起始单词失败了:(");
+					this.ShowAlertDialog("自定义起始单词失败了:(木有在词库里找到这个单词诶");
 				}
 			}else{
 				if(Action.getInstance().chooseWord(o.toString())){
@@ -130,7 +133,9 @@ public class EventHandler implements Initializable,Observer
 					this.EngWord.setText(Word.getInstance().getEnglish());
 					this.ReciteSetting.setVisible(false);
 					this.Reciting.setVisible(true);
-				}			
+				}else{
+					this.ShowAlertDialog("初始化单词背诵失败了:(");
+				}		
 			}	
 			
 		}
@@ -235,14 +240,14 @@ public class EventHandler implements Initializable,Observer
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
-		if(arg0 instanceof Word){
+		/*if(arg0 instanceof Word){
 			if(arg1.equals("chinese"))
 			{
 				System.out.println("chinese update");
 				this.ChMean.setText(Word.getInstance().getChinese());
 				
 			}
-		}/*else if(arg0 instanceof Lexicon){
+		}*//*else if(arg0 instanceof Lexicon){
 			System.out.println("chinese update");
 			this.ChMean.setText(Word.getInstance().getChinese());
 		}*/

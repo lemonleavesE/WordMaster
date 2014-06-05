@@ -16,8 +16,8 @@
          <children>
             <ChoiceBox id="LexiconSelection" fx:id="LexiconSelection" layoutX="251.0" layoutY="36.0" prefHeight="34.0" prefWidth="150.0" />
             <Label layoutX="146.0" layoutY="36.0" prefHeight="34.0" prefWidth="92.0" text="词库选择：" />
-            <Button layoutX="101.0" layoutY="171.0" mnemonicParsing="false" onAction="#EnterResiteSettingMode" onMouseClicked="#EnterResiteSettingMode" prefHeight="54.0" prefWidth="150.0" text="开始单词背诵" />
-            <Button layoutX="308.0" layoutY="171.0" mnemonicParsing="false" onAction="#ReadLexiconInfo" onMouseClicked="#ReadLexiconInfo" prefHeight="54.0" prefWidth="150.0" text="查看统计信息" />
+            <Button layoutX="101.0" layoutY="171.0" mnemonicParsing="false"  onMouseClicked="#EnterResiteSettingMode" prefHeight="54.0" prefWidth="150.0" text="开始单词背诵" />
+            <Button layoutX="308.0" layoutY="171.0" mnemonicParsing="false"  onMouseClicked="#ReadLexiconInfo" prefHeight="54.0" prefWidth="150.0" text="查看统计信息" />
          </children>
       </AnchorPane>
       <AnchorPane id="LexiconInfo" fx:id="LexiconInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #AFEEEE;" visible="false">
@@ -110,7 +110,7 @@
 				  <NumberAxis side="LEFT" />
 				</yAxis>
 			  </BarChart>
-			  <Button fx:id="Back_btn" layoutX="513.0" layoutY="359.0" mnemonicParsing="false" onAction="#ReturnMain" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
+			  <Button fx:id="Back_btn" layoutX="513.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
 		   </children>
 	  </AnchorPane>
 	  <AnchorPane id="ReciteSetting" fx:id="ReciteSetting" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FAFAD2;">
@@ -142,7 +142,7 @@
 				 </textFill>
 			  </Label>
 			  <TextField id="StartEntry" fx:id="StartEntry" layoutX="397.0" layoutY="71.0" prefHeight="25.0" prefWidth="140.0" />
-			  <Button layoutX="239.0" layoutY="271.0" mnemonicParsing="false" onAction="#StartReciting" onMouseClicked="#StartReciting" prefHeight="40.0" prefWidth="123.0" style="-fx-background-color: #E0FFFF; -fx-border-radius: 10px;" text="开始背诵啦" textFill="#c6c622">
+			  <Button layoutX="239.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#StartReciting" prefHeight="40.0" prefWidth="123.0" style="-fx-background-color: #E0FFFF; -fx-border-radius: 10px;" text="开始背诵啦" textFill="#c6c622">
 				 <effect>
 					<DropShadow color="#72d0e1" />
 				 </effect>
@@ -231,7 +231,7 @@
 					<Font size="20.0" />
 				 </font>
 			  </Label>
-            <Button fx:id="Back_btn2" layoutX="497.0" layoutY="350.0" mnemonicParsing="false" onAction="#ReturnMain" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
+            <Button fx:id="Back_btn2" layoutX="497.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#ReturnMain" prefHeight="25.0" prefWidth="57.0" text="返回" />
             <Group id="ErrorHint" fx:id="ErrorHint" layoutX="179.0" layoutY="266.0" visible="false">
                <children>
       			  <Label layoutX="11.0" prefHeight="25.0" prefWidth="41.0" text="出错了 " textFill="#ab4c8b" />
@@ -241,12 +241,12 @@
       				 </image>
       			  </ImageView>
       			  <Label layoutX="93.0" layoutY="-5.0" prefHeight="37.0" prefWidth="85.0" text="正确的应该是：" textFill="#ab4c8b" />
-      			  <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#ContinueReciting" onMouseClicked="#ContinueReciting" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #FFFACD;" text="我知道了:) 继续吧。" textFill="#fcc578">
+      			  <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#ContinueReciting" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #FFFACD;" text="我知道了:) 继续吧。" textFill="#fcc578">
       				 <effect>
       					<DropShadow color="#e1df60" />
       				 </effect>
       			  </Button>
-      			  <Label id="EngWord" fx:id="EngWord" layoutX="192.0" layoutY="4.0" prefHeight="17.0" prefWidth="62.0" text="Label" />
+      			  <Label id="EngWord" fx:id="EngWord" layoutX="192.0" layoutY="4.0" prefHeight="17.0" prefWidth="100.0" text="Label" />
                </children>
             </Group>
             <Group id="RecitingGroup" fx:id="RecitingGroup" layoutX="164.0" layoutY="66.0">
@@ -263,7 +263,7 @@
       			  </Label>
       			  <Label id="ChMean" fx:id="ChMean" layoutX="112.0" prefHeight="30.0" prefWidth="121.0" text="ChineseMeaning" textFill="#d3b7b7" />
       			  <TextField id="EngInput" fx:id="EngInput" layoutX="112.0" layoutY="51.0" />
-      			  <Button layoutX="101.0" layoutY="100.0" mnemonicParsing="false" onAction="#NextWord" onMouseClicked="#NextWord" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #FFFACD;" text="下一个" textFill="#fcc578">
+      			  <Button layoutX="101.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#NextWord" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #FFFACD;" text="下一个" textFill="#fcc578">
       				 <effect>
       					<DropShadow color="#e1df60" />
       				 </effect>
@@ -284,7 +284,7 @@
                            </image>
                         </ImageView>
                         <Label id="AlertMessage" fx:id="AlertMessage" layoutX="97.0" layoutY="59.0" prefHeight="17.0" prefWidth="147.0" text="你怎么不选起始单词:(" />
-                        <Button layoutX="118.0" layoutY="111.0" mnemonicParsing="false" onAction="#OnAlertOKClick" onMouseClicked="#OnAlertOKClick" text="确定" />
+                        <Button layoutX="118.0" layoutY="111.0" mnemonicParsing="false"  onMouseClicked="#OnAlertOKClick" text="确定" />
                      </children>
                   </AnchorPane>
                </content>

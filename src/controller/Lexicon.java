@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Observable;
+
 /*Lexicon object的变量，只要有
  * entryLexicon：词库入口
  * type:词库类别
@@ -13,7 +15,7 @@ package controller;
  * 
  * */
 
-public class Lexicon 
+public class Lexicon extends Observable
 {
 	private long entryLexicon;
 	private String type;
